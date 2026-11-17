@@ -1,0 +1,21 @@
+{
+  "name": "glider",
+  "description": "Find, install, update, check and remove your company's Skills from inside Claude, one command per action: /glider:list, /glider:search, /glider:install, /glider:update, /glider:status and /glider:remove.",
+  "author": {
+    "name": "Glider",
+    "email": "support@cartesian.io"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "glider",
+    "skills",
+    "catalog",
+    "list",
+    "search",
+    "install",
+    "update",
+    "status",
+    "remove"
+  ],
+  "version": "0.1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Glider background suggestions. Runs on every prompt in Claude Code and Cowork; desktop chat runs no plugin hooks.",
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/user-prompt-submit.mjs"],
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
