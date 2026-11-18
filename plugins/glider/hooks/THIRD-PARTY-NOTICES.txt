@@ -3,7 +3,7 @@ The hook scripts in this directory bundle the following third-party software.
 ------------------------------------------------------------------------
 
 zod@4.6.7
-Licence: MIT
+License: MIT
 
 MIT License
 

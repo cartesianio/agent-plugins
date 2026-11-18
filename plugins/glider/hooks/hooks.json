@@ -1,6 +1,22 @@
 {
-  "description": "Glider background suggestions. Runs on every prompt in Claude Code and Cowork; desktop chat runs no plugin hooks.",
+  "description": "Glider update check on session start and background suggestions on each prompt. Runs in Claude Code and Cowork; desktop chat runs no plugin hooks.",
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "-e",
+              "console.log(\"Every Skill installed through Glider ends its description with a stamp, \\\"(glider <name> v<version>)\\\" or \\\"(glider <name> v<version> pinned)\\\". At the start of each conversation, collect every such stamp from your skill list and call Glider's list tool once with them as installed and with automatic set to true, using the name inside each stamp, which may differ from the name your skill list shows; then follow the result's instructions. Skip this when your skill list has no stamps.\")"
+            ],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [

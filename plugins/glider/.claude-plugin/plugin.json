@@ -1,6 +1,6 @@
 {
   "name": "glider",
-  "description": "Find, install, update, check and remove your company's Skills from inside Claude, one command per action: /glider:list, /glider:search, /glider:install, /glider:update, /glider:status and /glider:remove.",
+  "description": "Find, install, update, pin, check, publish, release and remove your company's Skills from inside Claude, one command per action: /glider:list, /glider:search, /glider:install, /glider:update, /glider:pin, /glider:status, /glider:publish, /glider:release and /glider:remove.",
   "author": {
     "name": "Glider",
     "email": "support@cartesian.io"
@@ -14,8 +14,11 @@
     "search",
     "install",
     "update",
+    "pin",
     "status",
-    "remove"
+    "remove",
+    "publish",
+    "release"
   ],
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

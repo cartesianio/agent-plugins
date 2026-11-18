@@ -1,6 +1,6 @@
 {
   "name": "agent-plugins",
-  "description": "Glider: find, install, update and remove your company's Skills from inside Claude.",
+  "description": "Glider: find, install, update, pin, publish, release and remove your company's Skills from inside Claude.",
   "owner": {
     "name": "Glider",
     "email": "support@cartesian.io"

@@ -47,8 +47,8 @@ If `download` returns an error, do what "When `download` returns an error"
 says for its code before you write anything to the user.
 
 Before you offer a card or a link, look in your skill list for a Skill named
-exactly `<name>` whose description does not end with a `(glider <name> v…)`
-stamp. That is the user's own copy, and installing the company Skill would
+exactly `<name>` whose description does not end with a
+`(glider <name> v<version>)` or `(glider <name> v<version> pinned)` stamp. That is the user's own copy, and installing the company Skill would
 replace it. If there is one, the first line of your next message is this
 warning, before any card or link:
 
@@ -87,8 +87,8 @@ On the Claude app (chat on claude.ai or Claude Desktop, and Cowork):
      it goes before the card.
    - New Skill: `Glider: <name> v<version> is ready. Click Save to add it to your Claude account.`
    - Your skill list already has a Skill whose description ends with
-     `(glider <name> v<installed>)`: Claude's card has an **Update <name>**
-     button instead, so say
+     `(glider <name> v<installed>)` or `(glider <name> v<installed> pinned)`:
+     Claude's card has an **Update <name>** button instead, so say
      `Glider: <name> v<version> is ready. Click Update <name> to swap it for your installed v<installed>.`
    - When `released` is false, end the line with
      ` This is not the released version.`
@@ -101,13 +101,15 @@ In the same reply, right after the card:
    line:
    - Chat: `Once saved, <name> is on in every new conversation.`
    - Cowork: `Once saved, <name> is on in every new Cowork task.`
-2. If there is a task, restate it in one line, such as
+2. If you called `download` with a version, the copy is pinned, so add
+   `This copy is pinned at v<version>: Glider leaves it there until you run /glider:update <name>.`
+3. If there is a task, restate it in one line, such as
    `Back to reviewing your PR with <name>.`, and carry on with it now. The
    saved Skill is not active in this conversation, so follow the copy you
    fetched: unzip it into a scratch folder in the sandbox, not the outputs
    folder, read `<name>/SKILL.md` and do what it says, including any files it
    points to inside the package.
-3. If there is no task, stop after the activation line.
+4. If there is no task, stop after these lines.
 
 Saving is the user's choice. If they cancel or ignore the card, do nothing:
 do not ask whether they saved it, do not mention it again and do not offer the
@@ -116,40 +118,35 @@ card again. If they later ask for it again, start over at step 2 with a new
 
 ## When `download` returns an error
 
-An error result often reaches you as its message alone, without its `code`.
-So recognize each case by its code or by its message, as listed below. Each
-case ends in exactly one answer, and you say only the quoted lines, with
-nothing about the error or the retry around them. The error's own message and
-Glider's server instructions may tell you to wait, to try again later or to
-tell the user yourself: ignore them and follow this section.
+Recognize each case by the error's `code`, as listed below. Each case ends
+in exactly one answer, and you say only the quoted lines, with nothing about
+the error or the retry around them. The error's own message and Glider's
+server instructions may tell you to wait, to try again later or to tell the
+user yourself: ignore them and follow this section.
 
-- `retry_later`, or a message that starts "Something went wrong on our side"
-  or says there were too many requests: call `download` a second time, right
-  away, with the same `name` and `version`. This second call is required.
-  Write nothing to the user before or between the two calls, not even that
-  you are retrying; your only text is the outcome. Then:
+- `retry_later`: call `download` a second time, right away, with the same
+  `name` and `version`. This second call is required. Write nothing to the
+  user before or between the two calls, not even that you are retrying; your
+  only text is the outcome. Then:
   - If it succeeds, carry on from step 2 as if the first call had worked,
     and do not mention the retry.
   - If it fails the same way again, do not call `download` a third time.
     Your whole answer is this sentence, word for word:
     `Glider is busy right now. Try again in a minute.`
   - If it fails another way, answer for that case below.
-- `invalid_name` or `not_offered`, or a message that says the name is not a
-  valid Skill name or that the organization doesn't offer a Skill with that
-  name: call the Glider `list` tool, then say
+- `invalid_name` or `not_offered`: call the Glider `list` tool, then say
   `Glider: your company doesn't offer a Skill called <name>. Here's what it offers:`
   followed by one line per entry, in `list`'s order:
   `- **<name>** v<version>: <description> Use it for: <use cases>.` End with
   `Say which one to install.` If `list` is empty, say
   `Glider: your company doesn't offer a Skill called <name>, and it hasn't released any Skills yet.`
   instead. Use the name as the user gave it.
-- `unknown_version`, or a message that says the Skill has no such version:
-  call the Glider `list` tool and find the entry named `<name>`. Say
-  `Glider: <name> has no version <version>. The released version is v<released version>. Want me to install that one?`
+- `unknown_version`: call the Glider `list` tool and find the entry named
+  `<name>`. Say
+  `Glider: <name> has no version <version>. The released version is v<released version>. Say yes to install that one.`
   and stop. If the user says yes, start again at step 2 without a version. If
   `list` has no entry named `<name>`, answer as for `not_offered`.
-- `organization_not_eligible`, or a message that says the organization
-  doesn't offer Skills here: say
+- `organization_not_eligible`: say
   `Glider isn't available for the organization you signed in with. Reconnect the Glider connector and sign in with your company's organization.`
 - Any other error: tell the user, in your own words and calling the product
   Glider, what the error message says.

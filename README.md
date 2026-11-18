@@ -2,7 +2,7 @@
 
 Glider by [Cartesian](https://cartesian.io) brings your team's agents into the AI
 assistant you already use. It connects your assistant to the Cartesian MCP
-service, so you can search the Glider catalogue of skills and plugins and
+service, so you can search the Glider catalog of skills and plugins and
 install them with `/glider`.
 
 ## Install
