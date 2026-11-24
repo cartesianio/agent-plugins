@@ -1,6 +1,6 @@
 ---
 name: install
-description: Install one of the user's company Skills into their Claude account, at its released version or a version they name. Use when the user asks to install, add or get a company Skill, such as "install the security review Skill" or "install version 1.2 of the security review Skill", or runs /glider:install.
+description: Install one of the user's company Skills into their account, at its released version or a version they name. Use when the user asks to install, add or get a company Skill, such as "install the security review Skill" or "install version 1.2 of the security review Skill", or runs /glider:install.
 argument-hint: <name> [version]
 ---
 
@@ -80,18 +80,20 @@ On the Claude app (chat on claude.ai or Claude Desktop, and Cowork):
 
 3. Share the file with the user the way you share any output file, so Claude
    shows its card.
-   With it, say exactly one line from Glider, word for word
-   as quoted here, starting with `Glider:`, and nothing else about the card:
-   - The user's own copy found in step 2: Claude's card has an
-     **Update <name>** button. The warning from step 2 is the one line, and
-     it goes before the card.
-   - New Skill: `Glider: <name> v<version> is ready. Click Save to add it to your Claude account.`
-   - Your skill list already has a Skill whose description ends with
-     `(glider <name> v<installed>)` or `(glider <name> v<installed> pinned)`:
-     Claude's card has an **Update <name>** button instead, so say
-     `Glider: <name> v<version> is ready. Click Update <name> to swap it for your installed v<installed>.`
-   - When `released` is false, end the line with
-     ` This is not the released version.`
+
+With the card, say exactly one line from Glider, word for word as quoted
+here, starting with `Glider:`, and nothing else about the card:
+
+- The user's own copy found in step 2: Claude's card has an
+  **Update <name>** button. The warning from step 2 is the one line, and it
+  goes before the card.
+- New Skill: `Glider: <name> v<version> is ready. Click Save to add it to your Claude account.`
+- Your skill list already has a Skill whose description ends with
+  `(glider <name> v<installed>)` or `(glider <name> v<installed> pinned)`:
+  Claude's card has an **Update <name>** button instead, so say
+  `Glider: <name> v<version> is ready. Click Update <name> to swap it for your installed v<installed>.`
+- When `released` is false, end the line with
+  ` This is not the released version.`
 
 ## 4. After the card
 

@@ -17,8 +17,10 @@ working on the user's machine, you publish from the folder or file.
 
 Anywhere else, on chat or in Cowork in the cloud, you can't read the user's
 machine, so the Skill is a `.skill` file, which is a zip, or a zip attached
-to the conversation. If neither is attached, call no tool, say this line and
-nothing else, and stop:
+to the conversation.
+
+If neither is attached, call no tool, say this line and nothing else, and
+stop:
 
 `Glider: attach your Skill as a .skill file or a zip and ask again. Glider can't read the files on your computer from here, so it publishes the copy you attach.`
 

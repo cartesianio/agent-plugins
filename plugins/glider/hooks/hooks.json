@@ -1,5 +1,5 @@
 {
-  "description": "Glider update check on session start and background suggestions on each prompt. Runs in Claude Code and Cowork; desktop chat runs no plugin hooks.",
+  "description": "Glider update check on session start and implicit recommendations on each prompt, checked before the recommend call leaves. Runs in Claude Code and Cowork; desktop chat runs no plugin hooks.",
   "hooks": {
     "SessionStart": [
       {
@@ -10,7 +10,7 @@
             "command": "node",
             "args": [
               "-e",
-              "console.log(\"Every Skill installed through Glider ends its description with a stamp, \\\"(glider <name> v<version>)\\\" or \\\"(glider <name> v<version> pinned)\\\". At the start of each conversation, collect every such stamp from your skill list and call Glider's list tool once with them as installed and with automatic set to true, using the name inside each stamp, which may differ from the name your skill list shows; then follow the result's instructions. Skip this when your skill list has no stamps.\")"
+              "console.log(\"Every Skill installed through Glider ends its description with a stamp, \\\"(glider <name> v<version>)\\\" or \\\"(glider <name> v<version> pinned)\\\". At the start of each conversation, collect every such stamp from your skill list and call Glider's check_updates tool once with them as installed, using the name inside each stamp, which may differ from the name your skill list shows; then follow the result's instructions. Skip this when your skill list has no stamps.\")"
             ],
             "timeout": 5
           }
@@ -24,6 +24,57 @@
             "type": "command",
             "command": "node",
             "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/user-prompt-submit.mjs"],
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "mcp__.*__recommend$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/pre-tool-use.mjs"],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__.*__recommend$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/post-tool-use.mjs"],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "mcp__.*__recommend$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/post-tool-use-failure.mjs"],
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": ["${CLAUDE_PLUGIN_ROOT}/hooks/stop.mjs"],
             "timeout": 5
           }
         ]

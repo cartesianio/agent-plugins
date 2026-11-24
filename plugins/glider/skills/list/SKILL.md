@@ -11,16 +11,17 @@ Read the skill list you already see in this conversation: the name and
 description of every Skill on the user's account. A company Skill's description
 ends with a version stamp, `(glider <name> v<version>)` or
 `(glider <name> v<version> pinned)`, such as `(glider security-review v1.4.0)`.
-Take the name and the installed version from each stamp, not from the Skill's
-listed name. A stamp that ends with `pinned` marks a pinned Skill. Skip every
-Skill without a stamp.
+A stamp may carry more after these, such as ` plugin:<id>`; ignore it. Take
+the name and the installed version from each stamp, not from the Skill's
+listed name. A stamp with `pinned` after the version marks a pinned Skill.
+Skip every Skill without a stamp.
 
 ## Call `list` once
 
 - **You found stamps**: call the Glider `list` tool once, with `installed` set
   to one `{ name, version, pinned }` item for every stamp: the name and the
   version from the stamp, the version without its leading `v`, and `pinned`
-  true only when the stamp ends with `pinned`.
+  true only when the stamp has `pinned` after the version.
 - **You found none**: call it once with no arguments. Every entry is then not
   installed.
 

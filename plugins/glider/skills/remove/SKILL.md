@@ -1,6 +1,6 @@
 ---
 name: remove
-description: Tell the user exactly how to remove one of their company's Skills, or the Glider plugin itself, from their Claude account on the surface they are using. Use when the user asks to remove, uninstall, delete or turn off a company Skill or Glider, such as "remove the security review Skill", or runs /glider:remove.
+description: Remove one of the user's company Skills, or the Glider plugin itself, from their account, or tell them exactly how on the surface they are using. Use when the user asks to remove, uninstall, delete or turn off a company Skill or Glider, such as "remove the security review Skill", or runs /glider:remove.
 argument-hint: <name>
 ---
 

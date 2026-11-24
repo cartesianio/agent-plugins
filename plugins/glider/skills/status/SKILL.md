@@ -15,10 +15,11 @@ Update card from it.
 
 A company Skill's description ends with a version stamp,
 `(glider <name> v<version>)` or `(glider <name> v<version> pinned)`, such as
-`(glider security-review v1.4.0)`.
+`(glider security-review v1.4.0)`. A stamp may carry more after these, such
+as ` plugin:<id>`; ignore it.
 
 - Take the name and the installed version from the stamp, not from the Skill's
-  listed name. A stamp that ends with `pinned` marks a pinned Skill.
+  listed name. A stamp with `pinned` after the version marks a pinned Skill.
 - Skip every Skill whose description has no stamp. It is the user's own, not
   one of their company's Skills, so leave it out without mentioning it.
 
@@ -31,7 +32,7 @@ their company offers.
 Call the Glider `list` tool once, with `installed` set to one
 `{ name, version, pinned }` item for every stamp you found: the name and the
 version from the stamp, the version without its leading `v`, and `pinned` true
-only when the stamp ends with `pinned`. Pass every stamp even when the user
+only when the stamp has `pinned` after the version. Pass every stamp even when the user
 asked about one Skill.
 
 This skill tells you what to say, so do not follow or repeat the result's own

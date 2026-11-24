@@ -18,7 +18,8 @@ copy they have.
 
 Read the skill list you already see in this conversation. A company Skill's
 description ends with a version stamp, `(glider <name> v<version>)` or
-`(glider <name> v<version> pinned)`. Take the name and the installed version,
+`(glider <name> v<version> pinned)`. A stamp may carry more after these, such
+as ` plugin:<id>`; ignore it. Take the name and the installed version,
 `<installed>` below, from the stamp, not from the Skill's listed name.
 
 The name is the first word of `$ARGUMENTS`, or the Skill the user named in
@@ -29,7 +30,7 @@ words joined by hyphens.
 - Several stamped Skills could match: ask which one and stop.
 - Only a Skill without a stamp has that name: it is the user's own, not a
   company Skill. Say Glider can only pin company Skills and stop.
-- Its stamp ends with `pinned`: follow "Already pinned" below.
+- Its stamp has `pinned` after the version: follow "Already pinned" below.
 - No Skill has that name: follow "Not installed" below.
 - Otherwise go on to step 2.
 
@@ -73,10 +74,11 @@ On the Claude app (chat on claude.ai or Claude Desktop, and Cowork):
 
 3. Share the file with the user the way you share any output file, so Claude
    shows its card.
-   Because the Skill is already installed, the card's button
-   reads `Update <name>`. Put this one line with it, word for word, including
-   the `Glider:` prefix:
-   `Glider: this copy of <name> is pinned at v<version>. Click Update <name> to pin your installed copy.`
+
+Because the Skill is already installed, the card's button reads
+`Update <name>`. Put this one line with it, word for word, including the
+`Glider:` prefix:
+`Glider: this copy of <name> is pinned at v<version>. Click Update <name> to pin your installed copy.`
 
 In the same reply, after the card, add these two lines and stop:
 
@@ -88,7 +90,7 @@ offer the card again unless they ask.
 
 ## Already pinned
 
-Offer no card and do not call `download`. Call the Glider `list` tool once,
+Change nothing and do not call `download`. Call the Glider `list` tool once,
 with no arguments, and find the entry whose `name` is the name in the stamp.
 Versions are labels, so never call one newer or older than another. Answer
 with one line and stop:
@@ -112,7 +114,8 @@ user means by its name or description.
 - One matches: say
   `Glider: <name> isn't installed, so there is nothing to pin yet. Say yes to install the released v<released>, pinned.`
   and stop. If the user says yes, call `download` once with `name` and
-  `version` set to `<released>`, then carry on from step 3. The Skill is new
+  `version` set to `<released>`, then carry on from step 3.
+  The Skill is new
   on their account, so the card's button reads `Save`: the card line is
   `Glider: <name> v<version> is ready, pinned at that version. Click Save to add it to your Claude account.`
   and the last line after the card is left out.

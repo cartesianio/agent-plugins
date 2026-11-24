@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "glider",
+  "license": "Apache-2.0",
+  "version": "0.1.4",
+  "description": "Glider: find, install, update, pin, publish, release and remove your company's Skills.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Glider",
+        "shortDescription": "Your company's Skills",
+        "longDescription": "Glider: find, install, update, pin, publish, release and remove your company's Skills."
+      }
+    }
+  }
+}
